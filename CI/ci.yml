@@ -1,0 +1,50 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - Tasks/*
+  autoCancel: true
+
+parameters:
+- name: publishTask
+  displayName: Publish task artifact
+  type: boolean
+  default: false
+- name: publishExtension
+  displayName: Publish extension artifact
+  type: boolean
+  default: false
+
+pool:
+  name: Default
+
+workspace:
+  clean: all
+
+variables:
+- template: templates/variables.yml
+
+steps:
+- template: templates/build.yml
+  parameters:
+    name: ${{ variables.taskName }}
+    path: ${{ variables.tasksPath }}
+    restore: true
+    lint: true
+    build: true
+    test: true
+    publish: ${{ parameters.publishTask }}
+- template: templates/package.yml
+  parameters:
+    path: ${{ variables.artifactsPath }}
+    contents: |
+      Images/**
+      LICENSE
+      *.md
+      *.json
+    version: ${{ variables.version }}
+    publish: ${{ parameters.publishExtension }}

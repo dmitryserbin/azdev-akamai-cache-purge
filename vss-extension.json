@@ -1,0 +1,166 @@
+{
+  "manifestVersion": 1,
+  "id": "akamai-cache-purge",
+  "name": "Akamai Cache Purge",
+  "version": "1.0.0",
+  "publisher": "dmitryserbin",
+  "public": true,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Purge content cache at the Akamai Edge using Fast Purge API",
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "tags": [
+    "Akamai",
+    "EdgeGrid",
+    "Cache",
+    "Purge",
+    "Fast"
+  ],
+  "icons": {
+    "default": "Images/icon.png"
+  },
+  "content": {
+    "details": {
+      "path": "README.md"
+    },
+    "changelog": {
+      "path": "CHANGELOG.md"
+    },
+    "privacy": {
+      "path": "PRIVACY.md"
+    },
+    "license": {
+      "path": "LICENSE"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/dmitryserbin/azdev-akamai-cache-purge"
+    },
+    "support": {
+      "uri": "https://github.com/dmitryserbin/azdev-akamai-cache-purge/issues"
+    },
+    "license": {
+      "uri": "https://github.com/dmitryserbin/azdev-akamai-cache-purge/blob/master/LICENSE"
+    },
+    "privacypolicy": {
+      "uri": "https://github.com/dmitryserbin/azdev-akamai-cache-purge/blob/master/PRIVACY.md"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/dmitryserbin/azdev-akamai-cache-purge"
+  },
+  "files": [
+    {
+      "path": "Tasks"
+    },
+    {
+      "path": "Images",
+      "addressable": true
+    }
+  ],
+  "contributions": [
+    {
+      "id": "akamai-cache-purge",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Tasks"
+      }
+    },
+    {
+      "id": "edgegrid",
+      "description": "Service endpoint type for Akamai EdgeGrid connections",
+      "type": "ms.vss-endpoint.service-endpoint-type",
+      "targets": [ "ms.vss-endpoint.endpoint-types" ],
+      "properties": {
+        "name": "edgegrid",
+        "displayName": "Akamai EdgeGrid",
+        "url": {
+          "displayName": "Connection URL",
+          "helpText": "Akamai EdgeGrid API connection URL (i.e. `https://myhost.luna.akamaiapis.net` or `https://myhost.purge.akamaiapis.net`)",
+          "isVisible": true
+        },
+        "authenticationSchemes": [
+          {
+            "type": "ms.vss-endpoint.endpoint-auth-scheme-basic",
+            "inputDescriptors": [
+              {
+                "id": "clientsecret",
+                "name": "Client secret",
+                "description": "Client secret for Akamai EdgeGrid API authentication",
+                "inputMode": "passwordbox",
+                "isConfidential": true,
+                "validation": {
+                  "dataType": "string",
+                  "isRequired": true
+                }
+              },
+              {
+                "id": "clienttoken",
+                "name": "Client token",
+                "description": "Client token for Akamai EdgeGrid API authentication",
+                "inputMode": "passwordbox",
+                "isConfidential": true,
+                "validation": {
+                  "dataType": "string",
+                  "isRequired": true
+                }
+              },
+              {
+                "id": "accesstoken",
+                "name": "Access token",
+                "description": "Access token for Akamai EdgeGrid API authentication",
+                "inputMode": "passwordbox",
+                "isConfidential": true,
+                "validation": {
+                  "dataType": "string",
+                  "isRequired": true
+                }
+              },
+              {
+                "id": "username",
+                "name": "Username",
+                "description": "Not used parameter",
+                "inputMode": "textbox",
+                "validation": {
+                  "dataType": "string",
+                  "isRequired": false
+                },
+                "values": {
+                  "inputId": "usernameInput",
+                  "defaultValue": "",
+                  "isDisabled": true
+                }
+              },
+              {
+                "id": "password",
+                "name": "Password",
+                "description": "Not used parameter",
+                "inputMode": "passwordbox",
+                "isConfidential": true,
+                "validation": {
+                  "dataType": "string",
+                  "isRequired": false
+                },
+                "values": {
+                  "inputId": "passwordInput",
+                  "defaultValue": "",
+                  "isDisabled": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

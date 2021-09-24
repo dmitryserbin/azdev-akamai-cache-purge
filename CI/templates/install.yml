@@ -1,0 +1,18 @@
+parameters:
+  path: ""
+  endpointName: ""
+  replace: false
+  patch: false
+
+steps:
+- download: current
+  displayName: Download artifacts
+
+- ${{ if ne(parameters.endpointName, '') }}:
+  - task: taskpublisher@1
+    displayName: Install task
+    inputs:
+      ConnectedService: ${{ parameters.endpointName }}
+      TaskPath: ${{ parameters.path }}
+      Replace: ${{ parameters.replace }}
+      Patch: ${{ parameters.patch }}

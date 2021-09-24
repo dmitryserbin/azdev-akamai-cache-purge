@@ -1,0 +1,17 @@
+variables:
+  taskName: PurgeV1
+  tasksPath: Tasks
+  sourcePath: $(Build.SourcesDirectory)
+  artifactsPath: $(Build.ArtifactStagingDirectory)
+  taskArtifactPath: $(Pipeline.Workspace)/PurgeV1
+  extensionArtifactPath: $(Pipeline.Workspace)/Extension/*.vsix
+  extensionPreviewVisibility: privatepreview
+  extensionPreviewShareWith: dmitryserbin
+  extensionVisibility: publicpreview
+  extensionShareWith: ''
+  tasksEndpoint: dmitryserbin.tasks
+  marketplaceEndpoint: dmitryserbin.marketplace
+  version: $(Build.BuildId)
+  testEndpoint: akamai
+  testNetwork: staging
+  testUrls: http://time.akau.devops.akademo.it/one
