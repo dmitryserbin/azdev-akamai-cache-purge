@@ -5,6 +5,8 @@ import { IEndpoint } from "../interfaces/common/iendpoint";
 import { IParameters } from "../interfaces/common/iparameters";
 import { IDebugCreator } from "../interfaces/loggers/idebugcreator";
 import { IDebugLogger } from "../interfaces/loggers/idebuglogger";
+import { PurgeType } from "./purgetype";
+import { PurgeMethod } from "./purgemethod";
 
 export class TaskHelper implements ITaskHelper {
 
@@ -93,23 +95,57 @@ export class TaskHelper implements ITaskHelper {
 
         }
 
-        const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
-
-        if (Array.isArray(urls) && urls.length < 0) {
-
-            throw new Error(`Parameter <urls> is empty`);
-
-        }
+        const purgetype: string = getInput("purgetype", true)!;
+        const purgemethod: string = getInput("purgemethod", true)!;
+        const hostname: string = getInput("hostname", false);
 
         const wait: boolean = getBoolInput("wait", false);
 
-        const parameters: IParameters = {
+        let parameters: IParameters = {
 
             network,
-            urls,
-            wait,
+            purgetype: PurgeType.Urls,
+            purgemethod: PurgeMethod.Invalidate,
+            urls: [],
+            cpcodes: [],
+            hostname,
+            wait
 
         };
+
+        switch (purgetype) {
+
+            case "Urls": {
+
+                parameters = await this.readUrlInputs(parameters);
+
+                break;
+
+            } case "CPCodes": {
+
+                parameters = await this.readCPCodeInputs(parameters);
+
+                break;
+
+            }
+        }
+
+        switch (purgemethod) {
+
+            case "Delete": {
+
+                parameters.purgemethod = PurgeMethod.Delete;
+
+                parameters.hostname = hostname;
+
+                break;
+            } case "Invalidate": {
+
+                parameters.purgemethod = PurgeMethod.Invalidate;
+
+                break;
+            }
+        }
 
         debug(parameters);
 
@@ -121,6 +157,28 @@ export class TaskHelper implements ITaskHelper {
 
         setResult(TaskResult.Failed, message);
 
+    }
+
+    private async readUrlInputs(parameters: IParameters): Promise<IParameters> {
+
+        parameters.purgetype = PurgeType.Urls;
+
+        const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
+
+        parameters.urls = urls!;
+
+        return parameters;
+    }
+
+    private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
+
+        parameters.purgetype = PurgeType.CPCodes;
+
+        const cpcodes: string[] | undefined = getDelimitedInput("cpcodes", "\n", true);
+
+        parameters.cpcodes = cpcodes!;
+
+        return parameters;
     }
 
 }

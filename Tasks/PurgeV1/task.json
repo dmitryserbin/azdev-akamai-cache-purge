@@ -34,6 +34,18 @@
       "required": true
     },
     {
+      "name": "purgeType",
+      "type": "radio",
+      "label": "Purge type",
+      "helpMarkDown": "Type to perform content purging by\n\n- `Urls` - purge by URLS\n- `CPCodes` - purge by CP Codes",
+      "required": true,
+      "defaultValue": "Urls",
+      "options": {
+        "urls": "URLS",
+        "cpcodes": "CP Codes"
+      }
+    },
+    {
       "name": "urls",
       "type": "multiLine",
       "label": "Target URLs",
@@ -46,7 +58,44 @@
         "expression": "isMatch(value, '^(http|https):\/\/(.*)', 'IgnoreCase')",
         "message": "That does not appear to be a valid URL"
       },
-      "required": true
+      "required": false,
+      "visibleRule": "purgeType = urls"
+    },
+    {
+      "name": "cpcodes",
+      "type": "multiLine",
+      "label": "Target CP Codes",
+      "helpMarkDown": "Specify target Akamai-hosted CP Codes to purge cache (example `123456`, wildcards are not supported)",
+      "properties": {
+        "rows": 6,
+        "maxLength": 1000
+      },
+      "validation": {
+        "expression": "isMatch(value, '^\/d+$')",
+        "message": "That does not appear to be a valid CP Code, please use numbers only"
+      },
+      "required": false,
+      "visibleRule": "purgeType = cpcodes"
+    },
+    {
+      "name": "purgeMethod",
+      "type": "radio",
+      "label": "Purge method",
+      "helpMarkDown": "Method to perform content purging by\n\n- `Delete` - selecting this method means the content that is currently in Akamai’s edge server caches is never served.\n- `Invalidate` - Select this method to mark the cached content as invalid",
+      "required": true,
+      "defaultValue": "Invalidate",
+      "options": {
+        "delete": "Delete",
+        "invalidate": "Invalidate"
+      }
+    },
+    {
+      "name": "hostName",
+      "type": "string",
+      "label": "Host name",
+      "helpMarkDown": "Host name of the target Akamai property to be purged. Hostnames must be mapped to Akamai in the DNS CNAME record",
+      "required": false,
+      "visibleRule": "purgeMethod = delete"
     },
     {
       "name": "wait",

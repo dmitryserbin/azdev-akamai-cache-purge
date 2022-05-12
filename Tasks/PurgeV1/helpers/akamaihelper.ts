@@ -69,4 +69,56 @@ export class AkamaiHelper implements IAkamaiHelper {
 
     }
 
+    public async deleteCPCodeCache(network: string, hostname: string, objects: string[]): Promise<IPurgeResult> {
+
+        const debug = this.debugLogger.extend(this.deleteCPCodeCache.name);
+
+        const path: string = `/ccu/v3/delete/cpcode/${network}`;
+
+        const body: unknown = {
+
+            hostname,
+            objects,
+
+        };
+
+        const result: IPurgeResult = await this.edgegridClient.post<IPurgeResult>(path, body);
+
+        if (!result) {
+
+            throw new Error(`No purge results received`);
+
+        }
+
+        debug(result);
+
+        return result;
+
+    }
+
+    public async invalidateCPCodeCache(network: string, cpcodes: string[]): Promise<IPurgeResult> {
+
+        const debug = this.debugLogger.extend(this.invalidateCPCodeCache.name);
+
+        const path: string = `/ccu/v3/invalidate/cpcode/${network}`;
+
+        const body: unknown = {
+
+            objects: cpcodes,
+
+        };
+
+        const result: IPurgeResult = await this.edgegridClient.post<IPurgeResult>(path, body);
+
+        if (!result) {
+
+            throw new Error(`No purge results received`);
+
+        }
+
+        debug(result);
+
+        return result;
+
+    }
 }
