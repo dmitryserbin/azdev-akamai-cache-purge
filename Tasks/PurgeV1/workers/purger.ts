@@ -92,7 +92,7 @@ export class Purger implements IPurger {
 
         if (purge.httpStatus !== 201) {
 
-            throw new Error(`Purge request was not accepted`);
+            throw new Error(`Purge request was not accepted. Response: ${purge.httpStatus} (${purge.title})`);
 
         }
 

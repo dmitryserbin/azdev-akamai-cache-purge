@@ -5,5 +5,6 @@ export interface IPurgeResult {
     supportId: string,
     purgeId: string,
     estimatedSeconds: number,
+    title?: string,
 
 }

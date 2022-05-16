@@ -8,7 +8,7 @@ export interface IParameters {
     purgemethod: PurgeMethod;
     hostname: string;
     urls: string[];
-    cpcodes: string[];
+    cpcodes: number[];
     wait: boolean;
 
 }

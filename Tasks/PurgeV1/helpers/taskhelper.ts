@@ -97,7 +97,7 @@ export class TaskHelper implements ITaskHelper {
 
         const purgetype: string = getInput("purgetype", true)!;
         const purgemethod: string = getInput("purgemethod", true)!;
-        const hostname: string = getInput("hostname", false);
+        const hostname: string = getInput("hostname", false)!;
 
         const wait: boolean = getBoolInput("wait", false);
 
@@ -176,7 +176,11 @@ export class TaskHelper implements ITaskHelper {
 
         const cpcodes: string[] | undefined = getDelimitedInput("cpcodes", "\n", true);
 
-        parameters.cpcodes = cpcodes!;
+        for (const value of cpcodes) {
+
+            parameters.cpcodes.push(Number(value));
+
+        }
 
         return parameters;
     }
