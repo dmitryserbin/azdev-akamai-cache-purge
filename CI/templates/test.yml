@@ -1,6 +1,8 @@
 parameters:
   endpoint: ""
   network: ""
+  purgeType: ""
+  purgeMethod: "s"
   urls: ""
 
 steps:
@@ -9,4 +11,6 @@ steps:
   inputs:
     edgegridEndpoint: ${{ parameters.endpoint }}
     network: ${{ parameters.network }}
+    purgeType: ${{ parameters.purgetype }}
     urls: ${{ parameters.urls }}
+    purgeMethod: ${{ parameters.purgemethod }}

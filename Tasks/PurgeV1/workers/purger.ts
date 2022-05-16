@@ -38,7 +38,7 @@ export class Purger implements IPurger {
 
         switch (parameters.purgetype) {
 
-            case PurgeType.Urls: {
+            case PurgeType.Url: {
 
                 this.consoleLogger.log(this.reportHelper.getUrls(parameters.urls, parameters.network));
 
@@ -65,7 +65,7 @@ export class Purger implements IPurger {
 
                 break;
 
-            } case PurgeType.CPCodes: {
+            } case PurgeType.CPCode: {
 
                 this.consoleLogger.log(this.reportHelper.getCPCodes(parameters.cpcodes, parameters.network));
 

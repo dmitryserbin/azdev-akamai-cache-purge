@@ -15,3 +15,5 @@ variables:
   testEndpoint: akamai
   testNetwork: staging
   testUrls: http://time.akau.devops.akademo.it/one
+  purgeType: url
+  purgeMethod: invalidate

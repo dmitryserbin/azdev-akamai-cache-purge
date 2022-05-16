@@ -31,7 +31,7 @@ describe("Purger", async ()  => {
     const parameters: IParameters = {
 
         network: `staging`,
-        purgetype: PurgeType.Urls,
+        purgetype: PurgeType.Url,
         purgemethod: PurgeMethod.Invalidate,
         urls: [
             `http://time.akau.devops.akademo.it/one`,

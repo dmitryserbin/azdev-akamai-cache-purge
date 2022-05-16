@@ -37,12 +37,12 @@
       "name": "purgeType",
       "type": "radio",
       "label": "Purge type",
-      "helpMarkDown": "Type to perform content purging by\n\n- `Urls` - purge by URLS\n- `CPCodes` - purge by CP Codes",
+      "helpMarkDown": "Type to perform content purging by\n\n- `Url` - purge by URL\n- `CPCode` - purge by CP Code",
       "required": true,
-      "defaultValue": "Urls",
+      "defaultValue": "Url",
       "options": {
-        "urls": "URLS",
-        "cpcodes": "CP Codes"
+        "url": "URL",
+        "cpcode": "CP Code"
       }
     },
     {
@@ -59,7 +59,7 @@
         "message": "That does not appear to be a valid URL"
       },
       "required": false,
-      "visibleRule": "purgeType = urls"
+      "visibleRule": "purgeType = url"
     },
     {
       "name": "cpcodes",
@@ -75,7 +75,7 @@
         "message": "That does not appear to be a valid CP Code, please use numbers only"
       },
       "required": false,
-      "visibleRule": "purgeType = cpcodes"
+      "visibleRule": "purgeType = cpcode"
     },
     {
       "name": "purgeMethod",
