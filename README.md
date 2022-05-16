@@ -51,14 +51,14 @@ URL's CP code.
 - task: akamaicachepurge@1
   displayName: Akamai Cache Purge
   inputs:
-    edgegridEndpoint: My-Endpoint
-    network: My-Network # Options: staging, production
-    purgeType: Url
-    urls: |
+    edgegridEndpoint: My-Endpoint # Required
+    network: My-Network           # Options: staging, production
+    # purgeType: Url              # Optional. Options: Url (default), CPCode
+    urls: |                       # Required when purgeType: Url
       https://my.domain/one
       https://my.domain/two
-    purgeMethod: Invalidate
-    wait: false # Options: true, false
+    # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
+    wait: false                   # Options: true, false
 ```
 
 > Template: example task configuration purging CP Codes with Invalidate method
@@ -67,14 +67,14 @@ URL's CP code.
 - task: akamaicachepurge@1
   displayName: Akamai Cache Purge
   inputs:
-    edgegridEndpoint: My-Endpoint
-    network: My-Network # Options: staging, production
-    purgeType: CPCode
-    cpcodes: |
+    edgegridEndpoint: My-Endpoint # Required
+    network: My-Network           # Options: staging, production
+    # purgeType: CPCode           # Optional. Options: Url (default), CPCode
+    cpcodes: |                    # Required when purgeType: CPCode
       123456
       789123
-    purgeMethod: Invalidate
-    wait: false # Options: true, false
+    # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
+    wait: false                   # Options: true, false
 ```
 
 ## Service connection
