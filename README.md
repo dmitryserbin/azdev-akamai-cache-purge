@@ -53,8 +53,8 @@ URL's CP code.
   inputs:
     edgegridEndpoint: My-Endpoint # Required
     network: My-Network           # Options: staging, production
-    # purgeType: Url              # Optional. Options: Url (default), CPCode
-    urls: |                       # Required when purgeType: Url
+    # purgeType: url              # Optional. Options: url (default), cpcode
+    urls: |                       # Required when purgeType: url
       https://my.domain/one
       https://my.domain/two
     # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
@@ -69,8 +69,8 @@ URL's CP code.
   inputs:
     edgegridEndpoint: My-Endpoint # Required
     network: My-Network           # Options: staging, production
-    # purgeType: CPCode           # Optional. Options: Url (default), CPCode
-    cpcodes: |                    # Required when purgeType: CPCode
+    # purgeType: cpcode           # Optional. Options: url (default), cpcode
+    cpCodes: |                    # Required when purgeType: cpcode
       123456
       789123
     # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
@@ -92,7 +92,7 @@ You will need to [create credentials](https://developer.akamai.com/api/getting-s
 
 ## Support
 
-For aditional information and support please refer to [project repository](https://github.com/dmitryserbin/azdev-akamai-cache-purge). To enable debug mode to help troubleshooting issues, please configure `DEBUG=akamaicachepurge:*` custom release [variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables).
+For additional information and support please refer to [project repository](https://github.com/dmitryserbin/azdev-akamai-cache-purge). To enable debug mode to help troubleshooting issues, please configure `DEBUG=akamaicachepurge:*` custom release [variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables).
 
 For help with Azure DevOps and release pipelines please refer to [official documentation](https://docs.microsoft.com/en-us/azure/devops).
 

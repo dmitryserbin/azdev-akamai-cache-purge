@@ -5,8 +5,8 @@ import { IEndpoint } from "../interfaces/common/iendpoint";
 import { IParameters } from "../interfaces/common/iparameters";
 import { IDebugCreator } from "../interfaces/loggers/idebugcreator";
 import { IDebugLogger } from "../interfaces/loggers/idebuglogger";
-import { PurgeType } from "./purgetype";
-import { PurgeMethod } from "./purgemethod";
+import { PurgeType } from "./purgeType";
+import { PurgeMethod } from "./purgeMethod";
 
 export class TaskHelper implements ITaskHelper {
 
@@ -95,8 +95,8 @@ export class TaskHelper implements ITaskHelper {
 
         }
 
-        const purgetype: string = getInput("purgetype", true)!;
-        const purgemethod: string = getInput("purgemethod", true)!;
+        const purgeType: string = getInput("purgeType", true)!;
+        const purgeMethod: string = getInput("purgeMethod", true)!;
         const hostname: string = getInput("hostname", false)!;
 
         const wait: boolean = getBoolInput("wait", false);
@@ -104,24 +104,24 @@ export class TaskHelper implements ITaskHelper {
         let parameters: IParameters = {
 
             network,
-            purgetype: PurgeType.Url,
-            purgemethod: PurgeMethod.Invalidate,
+            purgeType: PurgeType.url,
+            purgeMethod: PurgeMethod.Invalidate,
             urls: [],
-            cpcodes: [],
+            cpCodes: [],
             hostname,
             wait
 
         };
 
-        switch (purgetype) {
+        switch (purgeType) {
 
-            case "Url": {
+            case "url": {
 
                 parameters = await this.readUrlInputs(parameters);
 
                 break;
 
-            } case "CPCode": {
+            } case "cpcode": {
 
                 parameters = await this.readCPCodeInputs(parameters);
 
@@ -130,20 +130,22 @@ export class TaskHelper implements ITaskHelper {
             }
         }
 
-        switch (purgemethod) {
+        switch (purgeMethod) {
 
             case "Delete": {
 
-                parameters.purgemethod = PurgeMethod.Delete;
+                parameters.purgeMethod = PurgeMethod.Delete;
 
                 parameters.hostname = hostname;
 
                 break;
+
             } case "Invalidate": {
 
-                parameters.purgemethod = PurgeMethod.Invalidate;
+                parameters.purgeMethod = PurgeMethod.Invalidate;
 
                 break;
+
             }
         }
 
@@ -161,7 +163,7 @@ export class TaskHelper implements ITaskHelper {
 
     private async readUrlInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgetype = PurgeType.Url;
+        parameters.purgeType = PurgeType.url;
 
         const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
 
@@ -172,13 +174,13 @@ export class TaskHelper implements ITaskHelper {
 
     private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgetype = PurgeType.CPCode;
+        parameters.purgeType = PurgeType.cpcode;
 
-        const cpcodes: string[] | undefined = getDelimitedInput("cpcodes", "\n", true);
+        const cpCodes: string[] | undefined = getDelimitedInput("cpCodes", "\n", true);
 
-        for (const value of cpcodes) {
+        for (const value of cpCodes) {
 
-            parameters.cpcodes.push(Number(value));
+            parameters.cpCodes.push(Number(value));
 
         }
 

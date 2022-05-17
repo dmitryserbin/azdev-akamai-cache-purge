@@ -12,8 +12,8 @@ import { IDebugCreator } from "../../interfaces/loggers/idebugcreator";
 import { IDebugLogger } from "../../interfaces/loggers/idebuglogger";
 import { TaskHelper } from "../../helpers/taskhelper";
 import { ITaskHelper } from "../../interfaces/helpers/itaskhelper";
-import { PurgeType } from "../../helpers/purgetype";
-import { PurgeMethod } from "../../helpers/purgemethod";
+import { PurgeType } from "../../helpers/purgeType";
+import { PurgeMethod } from "../../helpers/purgeMethod";
 
 describe("TaskHelper", ()  => {
 
@@ -113,10 +113,10 @@ describe("TaskHelper", ()  => {
         const cpcodesMock: number[] = [];
 
         inputs["network"] = networkMock;
-        inputs["purgetype"] = PurgeType.Url;
-        inputs["purgemethod"] = PurgeMethod.Invalidate;
+        inputs["purgeType"] = PurgeType.url;
+        inputs["purgeMethod"] = PurgeMethod.Invalidate;
         inputs["urls"] = urlsMock;
-        inputs["cpcodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpcodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -131,10 +131,10 @@ describe("TaskHelper", ()  => {
 
         chai.expect(result).to.not.eq(null);
         chai.expect(result.network).to.eq(networkMock);
-        chai.expect(result.purgetype).to.eq(PurgeType.Url);
-        chai.expect(result.purgemethod).to.eq(PurgeMethod.Invalidate);
+        chai.expect(result.purgeType).to.eq(PurgeType.url);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.Invalidate);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpcodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -149,10 +149,10 @@ describe("TaskHelper", ()  => {
         const cpcodesMock: number[] = [];
 
         inputs["network"] = networkMock;
-        inputs["purgetype"] = PurgeType.Url;
-        inputs["purgemethod"] = PurgeMethod.Delete;
+        inputs["purgeType"] = PurgeType.url;
+        inputs["purgeMethod"] = PurgeMethod.Delete;
         inputs["urls"] = urlsMock;
-        inputs["cpcodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpcodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -167,10 +167,10 @@ describe("TaskHelper", ()  => {
 
         chai.expect(result).to.not.eq(null);
         chai.expect(result.network).to.eq(networkMock);
-        chai.expect(result.purgetype).to.eq(PurgeType.Url);
-        chai.expect(result.purgemethod).to.eq(PurgeMethod.Delete);
+        chai.expect(result.purgeType).to.eq(PurgeType.url);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.Delete);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpcodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -185,10 +185,10 @@ describe("TaskHelper", ()  => {
         const cpcodesMock: number[] = [ 12345, 67891 ];
 
         inputs["network"] = networkMock;
-        inputs["purgetype"] = PurgeType.CPCode;
-        inputs["purgemethod"] = PurgeMethod.Invalidate;
+        inputs["purgeType"] = PurgeType.cpcode;
+        inputs["purgeMethod"] = PurgeMethod.Invalidate;
         inputs["urls"] = urlsMock;
-        inputs["cpcodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpcodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -203,10 +203,10 @@ describe("TaskHelper", ()  => {
 
         chai.expect(result).to.not.eq(null);
         chai.expect(result.network).to.eq(networkMock);
-        chai.expect(result.purgetype).to.eq(PurgeType.CPCode);
-        chai.expect(result.purgemethod).to.eq(PurgeMethod.Invalidate);
+        chai.expect(result.purgeType).to.eq(PurgeType.cpcode);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.Invalidate);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpcodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -221,10 +221,10 @@ describe("TaskHelper", ()  => {
         const cpcodesMock: number[] = [ 12345, 67891 ];
 
         inputs["network"] = networkMock;
-        inputs["purgetype"] = PurgeType.CPCode;
-        inputs["purgemethod"] = PurgeMethod.Delete;
+        inputs["purgeType"] = PurgeType.cpcode;
+        inputs["purgeMethod"] = PurgeMethod.Delete;
         inputs["urls"] = urlsMock;
-        inputs["cpcodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpcodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -239,10 +239,10 @@ describe("TaskHelper", ()  => {
 
         chai.expect(result).to.not.eq(null);
         chai.expect(result.network).to.eq(networkMock);
-        chai.expect(result.purgetype).to.eq(PurgeType.CPCode);
-        chai.expect(result.purgemethod).to.eq(PurgeMethod.Delete);
+        chai.expect(result.purgeType).to.eq(PurgeType.cpcode);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.Delete);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpcodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion

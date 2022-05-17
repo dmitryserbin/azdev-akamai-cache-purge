@@ -37,9 +37,9 @@
       "name": "purgeType",
       "type": "radio",
       "label": "Purge type",
-      "helpMarkDown": "Type to perform content purging by\n\n- `Url` - purge by URL\n- `CPCode` - purge by CP Code",
+      "helpMarkDown": "Type to perform content purging by\n\n- `url` - purge by URL\n- `cpcode` - purge by CP Code",
       "required": true,
-      "defaultValue": "Url",
+      "defaultValue": "url",
       "options": {
         "url": "URL",
         "cpcode": "CP Code"
@@ -62,7 +62,7 @@
       "visibleRule": "purgeType = url"
     },
     {
-      "name": "cpcodes",
+      "name": "cpCodes",
       "type": "multiLine",
       "label": "Target CP Codes",
       "helpMarkDown": "Specify target Akamai-hosted CP Codes to purge cache (example `123456`, wildcards are not supported)",

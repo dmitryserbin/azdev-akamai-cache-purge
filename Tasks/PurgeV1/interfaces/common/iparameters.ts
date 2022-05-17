@@ -1,14 +1,14 @@
-import { PurgeType } from "../../helpers/purgetype";
-import { PurgeMethod } from "../../helpers/purgemethod";
+import { PurgeType } from "../../helpers/purgeType";
+import { PurgeMethod } from "../../helpers/purgeMethod";
 
 export interface IParameters {
 
     network: string;
-    purgetype: PurgeType;
-    purgemethod: PurgeMethod;
+    purgeType: PurgeType;
+    purgeMethod: PurgeMethod;
     hostname: string;
     urls: string[];
-    cpcodes: number[];
+    cpCodes: number[];
     wait: boolean;
 
 }
