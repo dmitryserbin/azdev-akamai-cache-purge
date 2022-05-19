@@ -1,16 +1,28 @@
 parameters:
   endpoint: ""
   network: ""
-  purgeType: ""
   purgeMethod: ""
   urls: ""
+  cpCodes: ""
+  wait: true
 
 steps:
 - task: akamaicachepurge@1
-  displayName: Akamai Cache Purge
+  displayName: Akamai URL Cache Purge
   inputs:
     edgegridEndpoint: ${{ parameters.endpoint }}
     network: ${{ parameters.network }}
-    purgeType: ${{ parameters.purgeType }}
+    purgeType: url
     urls: ${{ parameters.urls }}
     purgeMethod: ${{ parameters.purgeMethod }}
+    wait: ${{ parameters.wait }}
+
+- task: akamaicachepurge@1
+  displayName: Akamai CP Code Cache Purge
+  inputs:
+    edgegridEndpoint: ${{ parameters.endpoint }}
+    network: ${{ parameters.network }}
+    purgeType: cpCode
+    cpCodes: ${{ parameters.cpCodes }}
+    purgeMethod: ${{ parameters.purgeMethod }}
+    wait: ${{ parameters.wait }}

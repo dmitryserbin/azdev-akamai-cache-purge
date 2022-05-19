@@ -38,7 +38,7 @@ export class Purger implements IPurger {
 
         switch (parameters.purgeType) {
 
-            case PurgeType.url: {
+            case PurgeType.Url: {
 
                 this.consoleLogger.log(this.reportHelper.getUrls(parameters.urls, parameters.network));
 
@@ -48,7 +48,7 @@ export class Purger implements IPurger {
 
                         this.consoleLogger.log(`Performing <Delete> purge method on provided URLs`)
 
-                         purge = await this.akamaiHelper.deleteUrlCache(parameters.network, parameters.hostname, parameters.urls);
+                         purge = await this.akamaiHelper.deleteUrlCache(parameters.network, parameters.urls);
 
                         break;
 
@@ -65,7 +65,7 @@ export class Purger implements IPurger {
 
                 break;
 
-            } case PurgeType.cpcode: {
+            } case PurgeType.CpCode: {
 
                 this.consoleLogger.log(this.reportHelper.getCPCodes(parameters.cpCodes, parameters.network));
 
@@ -75,7 +75,7 @@ export class Purger implements IPurger {
 
                         this.consoleLogger.log(`Performing <Delete> purge method on provided CP Codes`)
 
-                        purge = await this.akamaiHelper.deleteCPCodeCache(parameters.network, parameters.hostname, parameters.cpCodes);
+                        purge = await this.akamaiHelper.deleteCPCodeCache(parameters.network, parameters.cpCodes);
 
                         break;
 
@@ -98,7 +98,7 @@ export class Purger implements IPurger {
 
         }
 
-        this.consoleLogger.log(`Purge request <${purge.purgeId}> has been accepted`);
+        this.consoleLogger.log(`Purge request <${purge.purgeId}>  has been accepted`);
 
         if (parameters.wait) {
 

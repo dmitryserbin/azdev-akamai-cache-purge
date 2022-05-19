@@ -42,7 +42,7 @@
       "defaultValue": "url",
       "options": {
         "url": "URL",
-        "cpcode": "CP Code"
+        "cpCode": "CP Code"
       }
     },
     {
@@ -88,14 +88,6 @@
         "delete": "Delete",
         "invalidate": "Invalidate"
       }
-    },
-    {
-      "name": "hostName",
-      "type": "string",
-      "label": "Host name",
-      "helpMarkDown": "Host name of the target Akamai property to be purged. Hostnames must be mapped to Akamai in the DNS CNAME record",
-      "required": false,
-      "visibleRule": "purgeMethod = delete"
     },
     {
       "name": "wait",

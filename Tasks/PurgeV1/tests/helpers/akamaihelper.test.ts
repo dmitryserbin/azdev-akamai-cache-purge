@@ -38,8 +38,7 @@ describe("AkamaiHelper", ()  => {
         };
 
         const networkMock: string = `My-Network`;
-        const hostnameMock: string = `My-Hostname`;
-        const urlsmock: string[] = [ `/One`, `/Two` ];
+        const urlsMock: string[] = [ `/One`, `/Two` ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -48,7 +47,7 @@ describe("AkamaiHelper", ()  => {
 
         //#region ACT
 
-        const result = await akamaiHelper.deleteUrlCache(networkMock, hostnameMock, urlsmock);
+        const result = await akamaiHelper.deleteUrlCache(networkMock, urlsMock);
 
         //#endregion
 
@@ -111,8 +110,7 @@ describe("AkamaiHelper", ()  => {
         };
 
         const networkMock: string = `My-Network`;
-        const hostnameMock: string = `My-Hostname`;
-        const cpcodesMock: number[] = [ 123456, 789123 ];
+        const cpCodesMock: number[] = [ 123456, 789123 ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -121,7 +119,7 @@ describe("AkamaiHelper", ()  => {
 
         //#region ACT
 
-        const result = await akamaiHelper.deleteCPCodeCache(networkMock, hostnameMock, cpcodesMock);
+        const result = await akamaiHelper.deleteCPCodeCache(networkMock, cpCodesMock);
 
         //#endregion
 

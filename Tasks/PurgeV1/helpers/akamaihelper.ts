@@ -16,7 +16,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
     }
 
-    public async deleteUrlCache(network: string, hostname: string, urls: string[]): Promise<IPurgeResult> {
+    public async deleteUrlCache(network: string, urls: string[]): Promise<IPurgeResult> {
 
         const debug = this.debugLogger.extend(this.deleteUrlCache.name);
 
@@ -24,8 +24,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            hostname,
-            urls,
+            objects: urls
 
         };
 
@@ -51,7 +50,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: urls,
+            objects: urls
 
         };
 
@@ -69,7 +68,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
     }
 
-    public async deleteCPCodeCache(network: string, hostname: string, cpCodes: number[]): Promise<IPurgeResult> {
+    public async deleteCPCodeCache(network: string, cpCodes: number[]): Promise<IPurgeResult> {
 
         const debug = this.debugLogger.extend(this.deleteCPCodeCache.name);
 
@@ -77,8 +76,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            hostname,
-            cpCodes,
+            objects: cpCodes
 
         };
 
@@ -104,7 +102,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: cpCodes,
+            objects: cpCodes
 
         };
 

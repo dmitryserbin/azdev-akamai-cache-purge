@@ -1,6 +1,6 @@
 export enum PurgeType {
 
-    url = "url",
-    cpcode = "cpcode"
+    Url = "Url",
+    CpCode = "CpCode"
 
 }

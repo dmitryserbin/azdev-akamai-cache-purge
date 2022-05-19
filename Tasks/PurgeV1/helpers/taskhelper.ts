@@ -97,31 +97,29 @@ export class TaskHelper implements ITaskHelper {
 
         const purgeType: string = getInput("purgeType", true)!;
         const purgeMethod: string = getInput("purgeMethod", true)!;
-        const hostname: string = getInput("hostname", false)!;
 
         const wait: boolean = getBoolInput("wait", false);
 
         let parameters: IParameters = {
 
             network,
-            purgeType: PurgeType.url,
+            purgeType: PurgeType.Url,
             purgeMethod: PurgeMethod.Invalidate,
             urls: [],
             cpCodes: [],
-            hostname,
             wait
 
         };
 
         switch (purgeType) {
 
-            case "url": {
+            case "Url": {
 
                 parameters = await this.readUrlInputs(parameters);
 
                 break;
 
-            } case "cpcode": {
+            } case "CpCode": {
 
                 parameters = await this.readCPCodeInputs(parameters);
 
@@ -135,8 +133,6 @@ export class TaskHelper implements ITaskHelper {
             case "Delete": {
 
                 parameters.purgeMethod = PurgeMethod.Delete;
-
-                parameters.hostname = hostname;
 
                 break;
 
@@ -163,7 +159,7 @@ export class TaskHelper implements ITaskHelper {
 
     private async readUrlInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgeType = PurgeType.url;
+        parameters.purgeType = PurgeType.Url;
 
         const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
 
@@ -174,7 +170,7 @@ export class TaskHelper implements ITaskHelper {
 
     private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgeType = PurgeType.cpcode;
+        parameters.purgeType = PurgeType.CpCode;
 
         const cpCodes: string[] | undefined = getDelimitedInput("cpCodes", "\n", true);
 
