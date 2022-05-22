@@ -113,13 +113,13 @@ export class TaskHelper implements ITaskHelper {
 
         switch (purgeType) {
 
-            case "Url": {
+            case "url": {
 
                 parameters = await this.readUrlInputs(parameters);
 
                 break;
 
-            } case "CpCode": {
+            } case "cpCode": {
 
                 parameters = await this.readCPCodeInputs(parameters);
 
@@ -130,13 +130,13 @@ export class TaskHelper implements ITaskHelper {
 
         switch (purgeMethod) {
 
-            case "Delete": {
+            case "delete": {
 
                 parameters.purgeMethod = PurgeMethod.Delete;
 
                 break;
 
-            } case "Invalidate": {
+            } case "invalidate": {
 
                 parameters.purgeMethod = PurgeMethod.Invalidate;
 
@@ -163,6 +163,12 @@ export class TaskHelper implements ITaskHelper {
 
         const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
 
+        if (Array.isArray(urls) && urls.length < 0) {
+
+            throw new Error(`Parameter <urls> is empty`);
+
+        }
+
         parameters.urls = urls!;
 
         return parameters;
@@ -173,6 +179,12 @@ export class TaskHelper implements ITaskHelper {
         parameters.purgeType = PurgeType.CpCode;
 
         const cpCodes: string[] | undefined = getDelimitedInput("cpCodes", "\n", true);
+
+        if (Array.isArray(cpCodes) && cpCodes.length < 0) {
+
+            throw new Error(`Parameter <cpCodes> is empty`);
+
+        }
 
         for (const value of cpCodes) {
 

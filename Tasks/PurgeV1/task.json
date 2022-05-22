@@ -46,6 +46,18 @@
       }
     },
     {
+      "name": "purgeMethod",
+      "type": "radio",
+      "label": "Purge method",
+      "helpMarkDown": "Method to perform content purging by\n\n- `Delete` - selecting this method means the content that is currently in Akamai’s edge server caches is never served.\n- `Invalidate` - Select this method to mark the cached content as invalid",
+      "required": true,
+      "defaultValue": "Invalidate",
+      "options": {
+        "delete": "Delete",
+        "invalidate": "Invalidate"
+      }
+    },
+    {
       "name": "urls",
       "type": "multiLine",
       "label": "Target URLs",
@@ -71,23 +83,11 @@
         "maxLength": 1000
       },
       "validation": {
-        "expression": "isMatch(value, '^\/d+$')",
+        "expression": "isMatch(value, '^\/d+$', 'IgnoreCase')",
         "message": "That does not appear to be a valid CP Code, please use numbers only"
       },
       "required": false,
       "visibleRule": "purgeType = cpcode"
-    },
-    {
-      "name": "purgeMethod",
-      "type": "radio",
-      "label": "Purge method",
-      "helpMarkDown": "Method to perform content purging by\n\n- `Delete` - selecting this method means the content that is currently in Akamai’s edge server caches is never served.\n- `Invalidate` - Select this method to mark the cached content as invalid",
-      "required": true,
-      "defaultValue": "Invalidate",
-      "options": {
-        "delete": "Delete",
-        "invalidate": "Invalidate"
-      }
     },
     {
       "name": "wait",
