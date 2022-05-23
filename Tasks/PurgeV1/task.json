@@ -83,7 +83,7 @@
         "maxLength": 1000
       },
       "validation": {
-        "expression": "isMatch(value, '^\/d+$', 'IgnoreCase')",
+        "expression": "isMatch(value, '^([0-9]+)$', 'IgnoreCase')",
         "message": "That does not appear to be a valid CP Code, please use numbers only"
       },
       "required": false,
