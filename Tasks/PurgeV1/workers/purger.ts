@@ -38,13 +38,13 @@ export class Purger implements IPurger {
 
         switch (parameters.purgeType) {
 
-            case PurgeType.Url: {
+            case PurgeType.url: {
 
                 this.consoleLogger.log(this.reportHelper.getUrls(parameters.urls, parameters.network));
 
                 switch (parameters.purgeMethod) {
 
-                    case PurgeMethod.Delete: {
+                    case PurgeMethod.delete: {
 
                         this.consoleLogger.log(`Performing <Delete> purge method on provided URLs`)
 
@@ -52,7 +52,7 @@ export class Purger implements IPurger {
 
                         break;
 
-                    } case PurgeMethod.Invalidate: {
+                    } case PurgeMethod.invalidate: {
 
                         this.consoleLogger.log(`Performing <Invalidate> purge method on provided URLs`)
 
@@ -65,13 +65,13 @@ export class Purger implements IPurger {
 
                 break;
 
-            } case PurgeType.CpCode: {
+            } case PurgeType.cpCode: {
 
                 this.consoleLogger.log(this.reportHelper.getCPCodes(parameters.cpCodes, parameters.network));
 
                 switch (parameters.purgeMethod) {
 
-                    case PurgeMethod.Delete: {
+                    case PurgeMethod.delete: {
 
                         this.consoleLogger.log(`Performing <Delete> purge method on provided CP Codes`)
 
@@ -79,7 +79,7 @@ export class Purger implements IPurger {
 
                         break;
 
-                    } case PurgeMethod.Invalidate: {
+                    } case PurgeMethod.invalidate: {
 
                         this.consoleLogger.log(`Performing <Invalidate> purge method on provided CP Codes`)
 

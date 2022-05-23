@@ -103,8 +103,8 @@ export class TaskHelper implements ITaskHelper {
         let parameters: IParameters = {
 
             network,
-            purgeType: PurgeType.Url,
-            purgeMethod: PurgeMethod.Invalidate,
+            purgeType: PurgeType.url,
+            purgeMethod: PurgeMethod.invalidate,
             urls: [],
             cpCodes: [],
             wait
@@ -132,13 +132,13 @@ export class TaskHelper implements ITaskHelper {
 
             case "delete": {
 
-                parameters.purgeMethod = PurgeMethod.Delete;
+                parameters.purgeMethod = PurgeMethod.delete;
 
                 break;
 
             } case "invalidate": {
 
-                parameters.purgeMethod = PurgeMethod.Invalidate;
+                parameters.purgeMethod = PurgeMethod.invalidate;
 
                 break;
 
@@ -159,7 +159,7 @@ export class TaskHelper implements ITaskHelper {
 
     private async readUrlInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgeType = PurgeType.Url;
+        parameters.purgeType = PurgeType.url;
 
         const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
 
@@ -176,7 +176,7 @@ export class TaskHelper implements ITaskHelper {
 
     private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
 
-        parameters.purgeType = PurgeType.CpCode;
+        parameters.purgeType = PurgeType.cpCode;
 
         const cpCodes: string[] | undefined = getDelimitedInput("cpCodes", "\n", true);
 
