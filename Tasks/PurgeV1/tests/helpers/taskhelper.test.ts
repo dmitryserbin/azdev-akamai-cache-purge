@@ -110,13 +110,13 @@ describe("TaskHelper", ()  => {
         //#region ARRANGE
 
         const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
-        const cpcodesMock: number[] = [];
+        const cpCodesMock: number[] = [];
 
         inputs["network"] = networkMock;
         inputs["purgeType"] = PurgeType.url;
         inputs["purgeMethod"] = PurgeMethod.invalidate;
         inputs["urls"] = urlsMock;
-        inputs["cpCodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpCodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -134,7 +134,7 @@ describe("TaskHelper", ()  => {
         chai.expect(result.purgeType).to.eq(PurgeType.url);
         chai.expect(result.purgeMethod).to.eq(PurgeMethod.invalidate);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -146,13 +146,13 @@ describe("TaskHelper", ()  => {
         //#region ARRANGE
 
         const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
-        const cpcodesMock: number[] = [];
+        const cpCodesMock: number[] = [];
 
         inputs["network"] = networkMock;
         inputs["purgeType"] = PurgeType.url;
         inputs["purgeMethod"] = PurgeMethod.delete;
         inputs["urls"] = urlsMock;
-        inputs["cpCodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpCodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -170,7 +170,7 @@ describe("TaskHelper", ()  => {
         chai.expect(result.purgeType).to.eq(PurgeType.url);
         chai.expect(result.purgeMethod).to.eq(PurgeMethod.delete);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -182,13 +182,13 @@ describe("TaskHelper", ()  => {
         //#region ARRANGE
 
         const urlsMock: string[] = [];
-        const cpcodesMock: number[] = [ 12345, 67891 ];
+        const cpCodesMock: number[] = [ 12345, 67891 ];
 
         inputs["network"] = networkMock;
         inputs["purgeType"] = PurgeType.cpCode;
         inputs["purgeMethod"] = PurgeMethod.invalidate;
         inputs["urls"] = urlsMock;
-        inputs["cpCodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpCodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -206,7 +206,7 @@ describe("TaskHelper", ()  => {
         chai.expect(result.purgeType).to.eq(PurgeType.cpCode);
         chai.expect(result.purgeMethod).to.eq(PurgeMethod.invalidate);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion
@@ -218,13 +218,13 @@ describe("TaskHelper", ()  => {
         //#region ARRANGE
 
         const urlsMock: string[] = [];
-        const cpcodesMock: number[] = [ 12345, 67891 ];
+        const cpCodesMock: number[] = [ 12345, 67891 ];
 
         inputs["network"] = networkMock;
         inputs["purgeType"] = PurgeType.cpCode;
         inputs["purgeMethod"] = PurgeMethod.delete;
         inputs["urls"] = urlsMock;
-        inputs["cpCodes"] = cpcodesMock;
+        inputs["cpCodes"] = cpCodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -242,7 +242,7 @@ describe("TaskHelper", ()  => {
         chai.expect(result.purgeType).to.eq(PurgeType.cpCode);
         chai.expect(result.purgeMethod).to.eq(PurgeMethod.delete);
         chai.expect(result.urls).to.include.members(urlsMock);
-        chai.expect(result.cpCodes).to.include.members(cpcodesMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion

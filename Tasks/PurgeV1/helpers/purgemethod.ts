@@ -1,6 +1,6 @@
 export enum PurgeMethod {
 
     delete = "delete",
-    invalidate = "invalidate"
+    invalidate = "invalidate",
 
 }

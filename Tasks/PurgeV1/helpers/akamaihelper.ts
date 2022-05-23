@@ -24,7 +24,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: urls
+            objects: urls,
 
         };
 
@@ -50,7 +50,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: urls
+            objects: urls,
 
         };
 
@@ -76,7 +76,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: cpCodes
+            objects: cpCodes,
 
         };
 
@@ -102,7 +102,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const body: unknown = {
 
-            objects: cpCodes
+            objects: cpCodes,
 
         };
 

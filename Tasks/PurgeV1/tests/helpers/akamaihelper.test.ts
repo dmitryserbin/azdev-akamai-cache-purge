@@ -33,7 +33,7 @@ describe("AkamaiHelper", ()  => {
             detail: ``,
             supportId: ``,
             purgeId: ``,
-            estimatedSeconds: 1
+            estimatedSeconds: 1,
 
         };
 
@@ -146,7 +146,7 @@ describe("AkamaiHelper", ()  => {
         };
 
         const networkMock: string = `My-Network`;
-        const cpcodesMock: number[] = [ 123456, 789123 ];
+        const cpCodesMock: number[] = [ 123456, 789123 ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -155,7 +155,7 @@ describe("AkamaiHelper", ()  => {
 
         //#region ACT
 
-        const result = await akamaiHelper.invalidateCPCodeCache(networkMock, cpcodesMock);
+        const result = await akamaiHelper.invalidateCPCodeCache(networkMock, cpCodesMock);
 
         //#endregion
 

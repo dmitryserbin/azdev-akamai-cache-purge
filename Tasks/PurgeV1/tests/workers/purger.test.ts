@@ -35,10 +35,10 @@ describe("Purger", async ()  => {
         purgeMethod: PurgeMethod.invalidate,
         urls: [
             `http://time.akau.devops.akademo.it/one`,
-            `http://time.akau.devops.akademo.it/two`
+            `http://time.akau.devops.akademo.it/two`,
         ],
         cpCodes: [],
-        wait: true
+        wait: true,
 
     };
 

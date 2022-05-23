@@ -37,7 +37,7 @@
       "name": "purgeType",
       "type": "radio",
       "label": "Purge type",
-      "helpMarkDown": "Type to perform content purging by\n\n- `url` - purge by URL\n- `cpcode` - purge by CP Code",
+      "helpMarkDown": "Type to perform content purging by\n\n- `url` - purge by URL\n- `cpCode` - purge by CP Code",
       "required": true,
       "defaultValue": "url",
       "options": {
@@ -87,7 +87,7 @@
         "message": "That does not appear to be a valid CP Code, please use numbers only"
       },
       "required": false,
-      "visibleRule": "purgeType = cpcode"
+      "visibleRule": "purgeType = cpCode"
     },
     {
       "name": "wait",

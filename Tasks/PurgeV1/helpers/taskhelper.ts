@@ -107,7 +107,7 @@ export class TaskHelper implements ITaskHelper {
             purgeMethod: PurgeMethod.invalidate,
             urls: [],
             cpCodes: [],
-            wait
+            wait,
 
         };
 
@@ -172,6 +172,7 @@ export class TaskHelper implements ITaskHelper {
         parameters.urls = urls!;
 
         return parameters;
+
     }
 
     private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
@@ -193,6 +194,7 @@ export class TaskHelper implements ITaskHelper {
         }
 
         return parameters;
+
     }
 
 }
