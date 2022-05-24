@@ -1,12 +1,17 @@
 parameters:
   endpoint: ""
   network: ""
+  purgeMethod: ""
   urls: ""
+  wait: true
 
 steps:
 - task: akamaicachepurge@1
-  displayName: Akamai Cache Purge
+  displayName: Akamai URL Cache Purge
   inputs:
     edgegridEndpoint: ${{ parameters.endpoint }}
     network: ${{ parameters.network }}
+    purgeType: url
     urls: ${{ parameters.urls }}
+    purgeMethod: ${{ parameters.purgeMethod }}
+    wait: ${{ parameters.wait }}

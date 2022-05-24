@@ -9,9 +9,9 @@
 
 ## Overview
 
-> NOTE: This extension is currently in **public preview**. Please bear in mind that some of the task parameters or extension behaviour may suddenly change (this might include **breaking changes**).
+> NOTE: This extension is currently in **public preview**. Please bear in mind that some of the task parameters or extension behavior may suddenly change (this might include **breaking changes**).
 
-This extension adds [Akamai Cache Purge](https://marketplace.visualstudio.com/items?itemName=dmitryserbin.akamai-cache-purge) task to Azure DevOps pipleines to purge content cache at the Akamai Edge using [Fast Purge API](https://techdocs.akamai.com/purge-cache/reference/api). The extension uses [purge content by URL](https://techdocs.akamai.com/purge-cache/docs/purge-content-url) approach with `invalidate` request method.
+This extension adds [Akamai Cache Purge](https://marketplace.visualstudio.com/items?itemName=dmitryserbin.akamai-cache-purge) task to Azure DevOps pipelines to purge content cache at the Akamai Edge using [Fast Purge API](https://techdocs.akamai.com/purge-cache/reference/api). The extension can either [purge content by URL](https://techdocs.akamai.com/purge-cache/docs/purge-content-url) or [purge content by CP Code](https://techdocs.akamai.com/purge-cache/docs/purge-content-cp-code) approach with `invalidate` or `delete` request method
 
 Extension | Build | Code
 :-------|:-------|:-------
@@ -21,7 +21,8 @@ Extension | Build | Code
 
 - Service connection for Akamai EdgeGrid
 - Target staging or production Akamai network
-- Purge URLs cache using `invalidate` method
+- Purge URLs cache using `invalidate` or `delete` method
+- Purge CP Codes cache using `invalidate` or `delete` method
 - Wait for purge request activation
 
 ## How to use
@@ -29,7 +30,8 @@ Extension | Build | Code
 1. Add `Akamai Cache Purge` task to your release pipeline
 1. Select `Akamai EdgeGrid endpoint` (create if does not exist)
 1. Select target Akamai network
-1. Specify target URLs to purge cache
+1. Specify either target URLs or CP Codes to purge cache
+1. Specify either `invalidate` or `delete` for the purge method
 
 Make sure all the URLs you provide meet these requirements (as per Akamai [documentation](https://techdocs.akamai.com/purge-cache/docs/purge-content-url)):
 
@@ -41,18 +43,38 @@ Make sure all the URLs you provide meet these requirements (as per Akamai [docum
 - To successfully purge a URL, you must have permissions to purge content associated with that
 URL's CP code.
 
-> Template: example task configuration
+**Note**: When purging CP Codes, mind the origin overload. Objects are fetched from your origin server, so avoid purging all objects for a CP code as this can increase load on your origin server. Also, your CP code selection cannot exceed 100.
+
+> Template: example task configuration purging URLs with Invalidate method
 
 ```yaml
 - task: akamaicachepurge@1
   displayName: Akamai Cache Purge
   inputs:
-    edgegridEndpoint: My-Endpoint
-    network: My-Network # Options: staging, production
-    urls: |
+    edgegridEndpoint: My-Endpoint # Required
+    network: My-Network           # Options: staging, production
+    # purgeType: url              # Optional. Options: url (default), cpcode
+    urls: |                       # Required when purgeType: url
       https://my.domain/one
       https://my.domain/two
-    wait: false # Options: true, false
+    # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
+    wait: false                   # Options: true, false
+```
+
+> Template: example task configuration purging CP Codes with Invalidate method
+
+```yaml
+- task: akamaicachepurge@1
+  displayName: Akamai Cache Purge
+  inputs:
+    edgegridEndpoint: My-Endpoint # Required
+    network: My-Network           # Options: staging, production
+    # purgeType: cpcode           # Optional. Options: url (default), cpcode
+    cpCodes: |                    # Required when purgeType: cpcode
+      123456
+      789123
+    # purgeMethod: Invalidate     # Optional. Options: Invalidate (default), Delete
+    wait: false                   # Options: true, false
 ```
 
 ## Service connection
@@ -70,7 +92,7 @@ You will need to [create credentials](https://developer.akamai.com/api/getting-s
 
 ## Support
 
-For aditional information and support please refer to [project repository](https://github.com/dmitryserbin/azdev-akamai-cache-purge). To enable debug mode to help troubleshooting issues, please configure `DEBUG=akamaicachepurge:*` custom release [variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables).
+For additional information and support please refer to [project repository](https://github.com/dmitryserbin/azdev-akamai-cache-purge). To enable debug mode to help troubleshooting issues, please configure `DEBUG=akamaicachepurge:*` custom release [variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables).
 
 For help with Azure DevOps and release pipelines please refer to [official documentation](https://docs.microsoft.com/en-us/azure/devops).
 

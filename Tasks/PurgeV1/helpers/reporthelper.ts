@@ -42,6 +42,32 @@ export class ReportHelper implements IReportHelper {
 
     }
 
+    public getCPCodes(cpCodes: number[], network: string): string {
+        
+        const table: Table = this.newTable([
+
+            "CP Code",
+            "Network",
+
+        ]);
+
+        for (const cpcode of cpCodes) {
+
+            const result: any[] = [
+
+                cpcode,
+                network
+
+            ];
+
+            table.push(result);
+
+        }
+
+        return table.toString();
+
+    }
+
     private newTable(headers: string[], widths: number[] = []): Table {
 
         const options: any = {

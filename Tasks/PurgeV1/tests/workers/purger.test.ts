@@ -14,6 +14,8 @@ import { DebugCreator } from "../../loggers/debugcreator";
 import { IPurger } from "../../interfaces/workers/ipurger";
 import { Purger } from "../../workers/purger";
 import { IReportHelper } from "../../interfaces/helpers/ireporthelper";
+import { PurgeType } from "../../helpers/purgeType";
+import { PurgeMethod } from "../../helpers/purgeMethod";
 
 describe("Purger", async ()  => {
 
@@ -29,10 +31,13 @@ describe("Purger", async ()  => {
     const parameters: IParameters = {
 
         network: `staging`,
+        purgeType: PurgeType.url,
+        purgeMethod: PurgeMethod.invalidate,
         urls: [
             `http://time.akau.devops.akademo.it/one`,
             `http://time.akau.devops.akademo.it/two`,
         ],
+        cpCodes: [],
         wait: true,
 
     };

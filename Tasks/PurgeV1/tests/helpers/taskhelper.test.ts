@@ -12,6 +12,8 @@ import { IDebugCreator } from "../../interfaces/loggers/idebugcreator";
 import { IDebugLogger } from "../../interfaces/loggers/idebuglogger";
 import { TaskHelper } from "../../helpers/taskhelper";
 import { ITaskHelper } from "../../interfaces/helpers/itaskhelper";
+import { PurgeType } from "../../helpers/purgeType";
+import { PurgeMethod } from "../../helpers/purgeMethod";
 
 describe("TaskHelper", ()  => {
 
@@ -29,10 +31,9 @@ describe("TaskHelper", ()  => {
     const accessTokenMock: string = "My-Token";
 
     const networkMock: string = "My-Network";
-    const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
     const waitMock: boolean = true;
 
-    let inputs: {[key: string]: string | string[] | boolean};
+    let inputs: {[key: string]: string | string[] | boolean | number[]};
     let variables: {[key: string]: string};
 
     const taskHelper: ITaskHelper = new TaskHelper(debugCreatorMock.target);
@@ -104,12 +105,18 @@ describe("TaskHelper", ()  => {
 
     });
 
-    it("Should get parameters", async () => {
+    it("Should get parameters for URL cache purge with invalidate method", async () => {
 
         //#region ARRANGE
 
+        const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
+        const cpCodesMock: number[] = [];
+
         inputs["network"] = networkMock;
+        inputs["purgeType"] = PurgeType.url;
+        inputs["purgeMethod"] = PurgeMethod.invalidate;
         inputs["urls"] = urlsMock;
+        inputs["cpCodes"] = cpCodesMock;
         inputs["wait"] = waitMock;
 
         //#endregion
@@ -124,7 +131,118 @@ describe("TaskHelper", ()  => {
 
         chai.expect(result).to.not.eq(null);
         chai.expect(result.network).to.eq(networkMock);
+        chai.expect(result.purgeType).to.eq(PurgeType.url);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.invalidate);
         chai.expect(result.urls).to.include.members(urlsMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
+        chai.expect(result.wait).to.eq(waitMock);
+
+        //#endregion
+
+    });
+
+    it("Should get parameters for URL cache purge with delete method", async () => {
+
+        //#region ARRANGE
+
+        const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
+        const cpCodesMock: number[] = [];
+
+        inputs["network"] = networkMock;
+        inputs["purgeType"] = PurgeType.url;
+        inputs["purgeMethod"] = PurgeMethod.delete;
+        inputs["urls"] = urlsMock;
+        inputs["cpCodes"] = cpCodesMock;
+        inputs["wait"] = waitMock;
+
+        //#endregion
+
+        //#region ACT
+
+        const result = await taskHelper.getParameters();
+
+        //#endregion
+
+        //#region ASSERT
+
+        chai.expect(result).to.not.eq(null);
+        chai.expect(result.network).to.eq(networkMock);
+        chai.expect(result.purgeType).to.eq(PurgeType.url);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.delete);
+        chai.expect(result.urls).to.include.members(urlsMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
+        chai.expect(result.wait).to.eq(waitMock);
+
+        //#endregion
+
+    });
+
+    it("Should get parameters for CP Code cache purge with Invalidate method", async () => {
+
+        //#region ARRANGE
+
+        const urlsMock: string[] = [];
+        const cpCodesMock: number[] = [ 12345, 67891 ];
+
+        inputs["network"] = networkMock;
+        inputs["purgeType"] = PurgeType.cpCode;
+        inputs["purgeMethod"] = PurgeMethod.invalidate;
+        inputs["urls"] = urlsMock;
+        inputs["cpCodes"] = cpCodesMock;
+        inputs["wait"] = waitMock;
+
+        //#endregion
+
+        //#region ACT
+
+        const result = await taskHelper.getParameters();
+
+        //#endregion
+
+        //#region ASSERT
+
+        chai.expect(result).to.not.eq(null);
+        chai.expect(result.network).to.eq(networkMock);
+        chai.expect(result.purgeType).to.eq(PurgeType.cpCode);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.invalidate);
+        chai.expect(result.urls).to.include.members(urlsMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
+        chai.expect(result.wait).to.eq(waitMock);
+
+        //#endregion
+
+    });
+
+    it("Should get parameters for CP Code cache purge with delete method", async () => {
+
+        //#region ARRANGE
+
+        const urlsMock: string[] = [];
+        const cpCodesMock: number[] = [ 12345, 67891 ];
+
+        inputs["network"] = networkMock;
+        inputs["purgeType"] = PurgeType.cpCode;
+        inputs["purgeMethod"] = PurgeMethod.delete;
+        inputs["urls"] = urlsMock;
+        inputs["cpCodes"] = cpCodesMock;
+        inputs["wait"] = waitMock;
+
+        //#endregion
+
+        //#region ACT
+
+        const result = await taskHelper.getParameters();
+
+        //#endregion
+
+        //#region ASSERT
+
+        chai.expect(result).to.not.eq(null);
+        chai.expect(result.network).to.eq(networkMock);
+        chai.expect(result.purgeType).to.eq(PurgeType.cpCode);
+        chai.expect(result.purgeMethod).to.eq(PurgeMethod.delete);
+        chai.expect(result.urls).to.include.members(urlsMock);
+        chai.expect(result.cpCodes).to.include.members(cpCodesMock);
         chai.expect(result.wait).to.eq(waitMock);
 
         //#endregion

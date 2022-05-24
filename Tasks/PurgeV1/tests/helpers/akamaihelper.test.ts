@@ -23,7 +23,7 @@ describe("AkamaiHelper", ()  => {
 
     const akamaiHelper: IAkamaiHelper = new AkamaiHelper(edgegridClientMock.target, debugCreatorMock.target);
 
-    it("Should delete cache", async () => {
+    it("Should delete URL cache", async () => {
 
         //#region ARRANGE
 
@@ -38,8 +38,7 @@ describe("AkamaiHelper", ()  => {
         };
 
         const networkMock: string = `My-Network`;
-        const hostnameMock: string = `My-Hostname`;
-        const objectsMock: string[] = [ `/One`, `/Two` ];
+        const urlsMock: string[] = [ `/One`, `/Two` ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -48,7 +47,7 @@ describe("AkamaiHelper", ()  => {
 
         //#region ACT
 
-        const result = await akamaiHelper.deleteUrlCache(networkMock, hostnameMock, objectsMock);
+        const result = await akamaiHelper.deleteUrlCache(networkMock, urlsMock);
 
         //#endregion
 
@@ -60,7 +59,7 @@ describe("AkamaiHelper", ()  => {
 
     });
 
-    it("Should invalidate cache", async () => {
+    it("Should invalidate URL cache", async () => {
 
         //#region ARRANGE
 
@@ -85,6 +84,78 @@ describe("AkamaiHelper", ()  => {
         //#region ACT
 
         const result = await akamaiHelper.invalidateUrlCache(networkMock, urlsMock);
+
+        //#endregion
+
+        //#region ASSERT
+
+        chai.expect(result).to.not.eq(null);
+
+        //#endregion
+
+    });
+
+    it("Should delete CP Code cache", async () => {
+
+        //#region ARRANGE
+
+        const purgeResultMock: IPurgeResult = {
+
+            httpStatus: 201,
+            detail: ``,
+            supportId: ``,
+            purgeId: ``,
+            estimatedSeconds: 1,
+
+        };
+
+        const networkMock: string = `My-Network`;
+        const cpCodesMock: number[] = [ 123456, 789123 ];
+
+        edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
+            () => Promise.resolve(purgeResultMock));
+
+        //#endregion
+
+        //#region ACT
+
+        const result = await akamaiHelper.deleteCPCodeCache(networkMock, cpCodesMock);
+
+        //#endregion
+
+        //#region ASSERT
+
+        chai.expect(result).to.not.eq(null);
+
+        //#endregion
+
+    });
+
+    it("Should invalidate CP Code cache", async () => {
+
+        //#region ARRANGE
+
+        const purgeResultMock: IPurgeResult = {
+
+            httpStatus: 201,
+            detail: ``,
+            supportId: ``,
+            purgeId: ``,
+            estimatedSeconds: 1,
+
+        };
+
+        const networkMock: string = `My-Network`;
+        const cpCodesMock: number[] = [ 123456, 789123 ];
+
+        edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
+            () => Promise.resolve(purgeResultMock));
+
+        //#endregion
+
+        //#region ACT
+
+        const result = await akamaiHelper.invalidateCPCodeCache(networkMock, cpCodesMock);
 
         //#endregion
 

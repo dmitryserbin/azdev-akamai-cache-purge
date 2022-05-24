@@ -5,6 +5,8 @@ import { IEndpoint } from "../interfaces/common/iendpoint";
 import { IParameters } from "../interfaces/common/iparameters";
 import { IDebugCreator } from "../interfaces/loggers/idebugcreator";
 import { IDebugLogger } from "../interfaces/loggers/idebuglogger";
+import { PurgeType } from "./purgeType";
+import { PurgeMethod } from "./purgeMethod";
 
 export class TaskHelper implements ITaskHelper {
 
@@ -93,23 +95,55 @@ export class TaskHelper implements ITaskHelper {
 
         }
 
-        const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
-
-        if (Array.isArray(urls) && urls.length < 0) {
-
-            throw new Error(`Parameter <urls> is empty`);
-
-        }
+        const purgeType: string = getInput("purgeType", true)!;
+        const purgeMethod: string = getInput("purgeMethod", true)!;
 
         const wait: boolean = getBoolInput("wait", false);
 
-        const parameters: IParameters = {
+        let parameters: IParameters = {
 
             network,
-            urls,
+            purgeType: PurgeType.url,
+            purgeMethod: PurgeMethod.invalidate,
+            urls: [],
+            cpCodes: [],
             wait,
 
         };
+
+        switch (purgeType) {
+
+            case "url": {
+
+                parameters = await this.readUrlInputs(parameters);
+
+                break;
+
+            } case "cpCode": {
+
+                parameters = await this.readCPCodeInputs(parameters);
+
+                break;
+
+            }
+        }
+
+        switch (purgeMethod) {
+
+            case "delete": {
+
+                parameters.purgeMethod = PurgeMethod.delete;
+
+                break;
+
+            } case "invalidate": {
+
+                parameters.purgeMethod = PurgeMethod.invalidate;
+
+                break;
+
+            }
+        }
 
         debug(parameters);
 
@@ -120,6 +154,46 @@ export class TaskHelper implements ITaskHelper {
     public async fail(message: string): Promise<void> {
 
         setResult(TaskResult.Failed, message);
+
+    }
+
+    private async readUrlInputs(parameters: IParameters): Promise<IParameters> {
+
+        parameters.purgeType = PurgeType.url;
+
+        const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
+
+        if (Array.isArray(urls) && urls.length < 0) {
+
+            throw new Error(`Parameter <urls> is empty`);
+
+        }
+
+        parameters.urls = urls!;
+
+        return parameters;
+
+    }
+
+    private async readCPCodeInputs(parameters: IParameters): Promise<IParameters> {
+
+        parameters.purgeType = PurgeType.cpCode;
+
+        const cpCodes: string[] | undefined = getDelimitedInput("cpCodes", "\n", true);
+
+        if (Array.isArray(cpCodes) && cpCodes.length < 0) {
+
+            throw new Error(`Parameter <cpCodes> is empty`);
+
+        }
+
+        for (const value of cpCodes) {
+
+            parameters.cpCodes.push(Number(value));
+
+        }
+
+        return parameters;
 
     }
 

@@ -90,6 +90,7 @@ stages:
           endpoint: ${{ variables.testEndpoint }}
           network: ${{ variables.testNetwork }}
           urls: ${{ variables.testUrls }}
+          purgeMethod: ${{ variables.purgeMethod }}
 
 - stage: Release
   dependsOn:
