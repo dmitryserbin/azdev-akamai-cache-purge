@@ -42,12 +42,6 @@ describe("Purger", async () => {
 
     };
 
-    const debugCreator: IDebugCreator = new DebugCreator("akamaicachepurge");
-    const consoleLogger: IConsoleLogger = new ConsoleLogger();
-
-    const apiFactory: IApiFactory = new ApiFactory(endpoint, debugCreator);
-    const helperFactory: IHelperFactory = new HelperFactory(apiFactory, debugCreator);
-
     beforeEach(async () => {
 
         // TBU
@@ -61,6 +55,12 @@ describe("Purger", async () => {
     });
 
     it("Run @manual", async () => {
+
+        const debugCreator: IDebugCreator = new DebugCreator("akamaicachepurge");
+        const consoleLogger: IConsoleLogger = new ConsoleLogger();
+
+        const apiFactory: IApiFactory = new ApiFactory(endpoint, debugCreator);
+        const helperFactory: IHelperFactory = new HelperFactory(apiFactory, debugCreator);
 
         const akamaiHelper: IAkamaiHelper = await helperFactory.createAkamaiHelper();
         const reportHelper: IReportHelper = await helperFactory.createReportHelper();

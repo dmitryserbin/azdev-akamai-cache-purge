@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .ts",
-    "test": "mocha -r ts-node/register tests/**/*.test.ts --no-timeouts --grep \"@manual\" --invert --reporter mocha-multi-reporters --reporter-options configFile=tests/config.json",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts --no-timeouts --grep @manual --invert --reporter mocha-multi-reporters --reporter-options configFile=tests/config.json",
     "manual": "mocha -r ts-node/register tests/**/*.test.ts --no-timeouts --grep @manual",
     "clean": "npm prune --production"
   },
