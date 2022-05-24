@@ -17,36 +17,30 @@ import { IReportHelper } from "../../interfaces/helpers/ireporthelper";
 import { PurgeType } from "../../helpers/purgeType";
 import { PurgeMethod } from "../../helpers/purgeMethod";
 
-describe("Purger", async ()  => {
+describe("Purger", async () => {
 
     const endpoint: IEndpoint = {
 
-        url: process.env.url ?? ``,
-        clientSecret: process.env.clientSecret ?? ``,
-        clientToken: process.env.clientToken ?? ``,
-        accessToken: process.env.accessToken ?? ``,
+        url: process.env.url ?? "",
+        clientSecret: process.env.clientSecret ?? "",
+        clientToken: process.env.clientToken ?? "",
+        accessToken: process.env.accessToken ?? "",
 
     };
 
     const parameters: IParameters = {
 
-        network: `staging`,
+        network: "staging",
         purgeType: PurgeType.url,
         purgeMethod: PurgeMethod.invalidate,
         urls: [
-            `http://time.akau.devops.akademo.it/one`,
-            `http://time.akau.devops.akademo.it/two`,
+            "http://time.akau.devops.akademo.it/one",
+            "http://time.akau.devops.akademo.it/two",
         ],
         cpCodes: [],
         wait: true,
 
     };
-
-    const debugCreator: IDebugCreator = new DebugCreator("akamaicachepurge");
-    const consoleLogger: IConsoleLogger = new ConsoleLogger();
-
-    const apiFactory: IApiFactory = new ApiFactory(endpoint, debugCreator);
-    const helperFactory: IHelperFactory = new HelperFactory(apiFactory, debugCreator);
 
     beforeEach(async () => {
 
@@ -61,6 +55,12 @@ describe("Purger", async ()  => {
     });
 
     it("Run @manual", async () => {
+
+        const debugCreator: IDebugCreator = new DebugCreator("akamaicachepurge");
+        const consoleLogger: IConsoleLogger = new ConsoleLogger();
+
+        const apiFactory: IApiFactory = new ApiFactory(endpoint, debugCreator);
+        const helperFactory: IHelperFactory = new HelperFactory(apiFactory, debugCreator);
 
         const akamaiHelper: IAkamaiHelper = await helperFactory.createAkamaiHelper();
         const reportHelper: IReportHelper = await helperFactory.createReportHelper();

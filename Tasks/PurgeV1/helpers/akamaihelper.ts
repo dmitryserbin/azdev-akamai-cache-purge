@@ -20,7 +20,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const debug = this.debugLogger.extend(this.deleteUrlCache.name);
 
-        const path: string = `/ccu/v3/delete/url/${network}`;
+        const path = `/ccu/v3/delete/url/${network}`;
 
         const body: unknown = {
 
@@ -32,7 +32,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         if (!result) {
 
-            throw new Error(`No purge results received`);
+            throw new Error("No purge results received");
 
         }
 
@@ -46,7 +46,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const debug = this.debugLogger.extend(this.invalidateUrlCache.name);
 
-        const path: string = `/ccu/v3/invalidate/url/${network}`;
+        const path = `/ccu/v3/invalidate/url/${network}`;
 
         const body: unknown = {
 
@@ -58,7 +58,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         if (!result) {
 
-            throw new Error(`No purge results received`);
+            throw new Error("No purge results received");
 
         }
 
@@ -72,7 +72,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const debug = this.debugLogger.extend(this.deleteCPCodeCache.name);
 
-        const path: string = `/ccu/v3/delete/cpcode/${network}`;
+        const path = `/ccu/v3/delete/cpcode/${network}`;
 
         const body: unknown = {
 
@@ -84,7 +84,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         if (!result) {
 
-            throw new Error(`No purge results received`);
+            throw new Error("No purge results received");
 
         }
 
@@ -98,7 +98,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         const debug = this.debugLogger.extend(this.invalidateCPCodeCache.name);
 
-        const path: string = `/ccu/v3/invalidate/cpcode/${network}`;
+        const path = `/ccu/v3/invalidate/cpcode/${network}`;
 
         const body: unknown = {
 
@@ -110,7 +110,7 @@ export class AkamaiHelper implements IAkamaiHelper {
 
         if (!result) {
 
-            throw new Error(`No purge results received`);
+            throw new Error("No purge results received");
 
         }
 
@@ -119,4 +119,5 @@ export class AkamaiHelper implements IAkamaiHelper {
         return result;
 
     }
+
 }

@@ -15,7 +15,7 @@ import { ITaskHelper } from "../../interfaces/helpers/itaskhelper";
 import { PurgeType } from "../../helpers/purgeType";
 import { PurgeMethod } from "../../helpers/purgeMethod";
 
-describe("TaskHelper", ()  => {
+describe("TaskHelper", () => {
 
     const debugLoggerMock = TypeMoq.Mock.ofType<IDebugLogger>();
     const debugCreatorMock = TypeMoq.Mock.ofType<IDebugCreator>();
@@ -23,15 +23,15 @@ describe("TaskHelper", ()  => {
     debugCreatorMock.setup((x) => x.extend(TypeMoq.It.isAnyString())).returns(() => debugLoggerMock.target);
     debugLoggerMock.setup((x) => x.extend(TypeMoq.It.isAnyString())).returns(() => debugLoggerMock.target);
 
-    const endpointNameMock: string = "My-Endpoint";
-    const endpointUrlMock: string = `https://domain.com`;
+    const endpointNameMock = "My-Endpoint";
+    const endpointUrlMock = "https://domain.com";
 
-    const clientTokenMock: string = "My-Token";
-    const clientSecretMock: string = "My-Token";
-    const accessTokenMock: string = "My-Token";
+    const clientTokenMock = "My-Token";
+    const clientSecretMock = "My-Token";
+    const accessTokenMock = "My-Token";
 
-    const networkMock: string = "My-Network";
-    const waitMock: boolean = true;
+    const networkMock = "My-Network";
+    const waitMock = true;
 
     let inputs: {[key: string]: string | string[] | boolean | number[]};
     let variables: {[key: string]: string};
@@ -41,16 +41,32 @@ describe("TaskHelper", ()  => {
     beforeEach(async () => {
 
         const getInputMock = ImportMock.mockFunction(TaskLibrary, "getInput");
-        getInputMock.callsFake((i: string | number) => { return inputs[i] || null; });
+        getInputMock.callsFake((i: string | number) => {
+
+            return inputs[i] || null;
+
+        });
 
         const getBoolInputMock = ImportMock.mockFunction(TaskLibrary, "getBoolInput");
-        getBoolInputMock.callsFake((i: string | number) => { return (typeof inputs[i] === "boolean") ? inputs[i] : false; });
+        getBoolInputMock.callsFake((i: string | number) => {
+
+            return (typeof inputs[i] === "boolean") ? inputs[i] : false;
+
+        });
 
         const getDelimitedInputMock = ImportMock.mockFunction(TaskLibrary, "getDelimitedInput");
-        getDelimitedInputMock.callsFake((i: string | number) => { return inputs[i] ? inputs[i].toString().split(",") : []; });
+        getDelimitedInputMock.callsFake((i: string | number) => {
+
+            return inputs[i] ? inputs[i].toString().split(",") : [];
+
+        });
 
         const getVariableMock = ImportMock.mockFunction(TaskLibrary, "getVariable");
-        getVariableMock.callsFake((i: string | number) => { return variables[i] || null; });
+        getVariableMock.callsFake((i: string | number) => {
+
+            return variables[i] || null;
+
+        });
 
         inputs = {};
         variables = {};
@@ -77,7 +93,7 @@ describe("TaskHelper", ()  => {
                 accesstoken: accessTokenMock,
             },
 
-        }
+        };
 
         const getEndpointUrlMock = ImportMock.mockFunction(TaskLibrary, "getEndpointUrl");
         getEndpointUrlMock.callsFake(() => endpointUrlMock);
@@ -248,4 +264,5 @@ describe("TaskHelper", ()  => {
         //#endregion
 
     });
+
 });

@@ -31,7 +31,7 @@ export class ReportHelper implements IReportHelper {
 
                 url,
                 network,
-    
+
             ];
 
             table.push(result);
@@ -43,7 +43,7 @@ export class ReportHelper implements IReportHelper {
     }
 
     public getCPCodes(cpCodes: number[], network: string): string {
-        
+
         const table: Table = this.newTable([
 
             "CP Code",
@@ -56,7 +56,7 @@ export class ReportHelper implements IReportHelper {
             const result: any[] = [
 
                 cpcode,
-                network
+                network,
 
             ];
 

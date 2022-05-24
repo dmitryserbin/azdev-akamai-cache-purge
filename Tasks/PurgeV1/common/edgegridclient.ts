@@ -34,7 +34,7 @@ export class EdgeGridClient implements IEdgeGridClient {
 
         });
 
-        const result: any = new Promise ((resolve, reject) => {
+        const result: any = new Promise((resolve, reject) => {
 
             auth.send((error: unknown, response: unknown, body: string) => {
 
@@ -68,13 +68,13 @@ export class EdgeGridClient implements IEdgeGridClient {
             path: path,
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
             body: body ? body : [],
 
         });
 
-        const result: any = new Promise ((resolve, reject) => {
+        const result: any = new Promise((resolve, reject) => {
 
             auth.send((error: unknown, response: unknown, body: string) => {
 

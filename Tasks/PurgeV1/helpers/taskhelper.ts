@@ -1,4 +1,4 @@
-import { getInput, getEndpointUrl, setResult, TaskResult, getEndpointAuthorization, EndpointAuthorization, getDelimitedInput, getBoolInput } from "azure-pipelines-task-lib/task";
+import { EndpointAuthorization, TaskResult, getBoolInput, getDelimitedInput, getEndpointAuthorization, getEndpointUrl, getInput, setResult } from "azure-pipelines-task-lib/task";
 
 import { ITaskHelper } from "../interfaces/helpers/itaskhelper";
 import { IEndpoint } from "../interfaces/common/iendpoint";
@@ -91,12 +91,25 @@ export class TaskHelper implements ITaskHelper {
 
         if (!network) {
 
-            throw new Error(`Parameter <network> is empty`);
+            throw new Error("Parameter <network> is empty");
 
         }
 
-        const purgeType: string = getInput("purgeType", true)!;
-        const purgeMethod: string = getInput("purgeMethod", true)!;
+        const purgeType: string | undefined = getInput("purgeType", true);
+
+        if (!purgeType) {
+
+            throw new Error("Parameter <purgeType> is empty");
+
+        }
+
+        const purgeMethod: string | undefined = getInput("purgeMethod", true);
+
+        if (!purgeMethod) {
+
+            throw new Error("Parameter <purgeMethod> is empty");
+
+        }
 
         const wait: boolean = getBoolInput("wait", false);
 
@@ -126,6 +139,7 @@ export class TaskHelper implements ITaskHelper {
                 break;
 
             }
+
         }
 
         switch (purgeMethod) {
@@ -143,6 +157,7 @@ export class TaskHelper implements ITaskHelper {
                 break;
 
             }
+
         }
 
         debug(parameters);
@@ -163,13 +178,13 @@ export class TaskHelper implements ITaskHelper {
 
         const urls: string[] | undefined = getDelimitedInput("urls", "\n", true);
 
-        if (Array.isArray(urls) && urls.length < 0) {
+        if (Array.isArray(urls) && urls.length < 1) {
 
-            throw new Error(`Parameter <urls> is empty`);
+            throw new Error("Parameter <urls> is empty");
 
         }
 
-        parameters.urls = urls!;
+        parameters.urls = urls;
 
         return parameters;
 
@@ -183,7 +198,7 @@ export class TaskHelper implements ITaskHelper {
 
         if (Array.isArray(cpCodes) && cpCodes.length < 0) {
 
-            throw new Error(`Parameter <cpCodes> is empty`);
+            throw new Error("Parameter <cpCodes> is empty");
 
         }
 

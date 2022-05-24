@@ -34,7 +34,7 @@ export class Purger implements IPurger {
 
         this.consoleLogger.log(`Purging Akamai Edge <${parameters.network}> network content cache`);
 
-        debug(`Starting <${PurgeType[parameters.purgeType]}> Akamai purge process`)
+        debug(`Starting <${PurgeType[parameters.purgeType]}> Akamai purge process`);
 
         switch (parameters.purgeType) {
 
@@ -46,21 +46,22 @@ export class Purger implements IPurger {
 
                     case PurgeMethod.delete: {
 
-                        this.consoleLogger.log(`Performing <Delete> purge method on provided URLs`)
+                        this.consoleLogger.log("Performing URL method <Delete> cache purge");
 
-                         purge = await this.akamaiHelper.deleteUrlCache(parameters.network, parameters.urls);
+                        purge = await this.akamaiHelper.deleteUrlCache(parameters.network, parameters.urls);
 
                         break;
 
                     } case PurgeMethod.invalidate: {
 
-                        this.consoleLogger.log(`Performing <Invalidate> purge method on provided URLs`)
+                        this.consoleLogger.log("Performing URL method <Invalidate> cache purge");
 
                         purge = await this.akamaiHelper.invalidateUrlCache(parameters.network, parameters.urls);
 
                         break;
 
                     }
+
                 }
 
                 break;
@@ -73,7 +74,7 @@ export class Purger implements IPurger {
 
                     case PurgeMethod.delete: {
 
-                        this.consoleLogger.log(`Performing <Delete> purge method on provided CP Codes`)
+                        this.consoleLogger.log("Performing CP Code method <Delete> cache purge");
 
                         purge = await this.akamaiHelper.deleteCPCodeCache(parameters.network, parameters.cpCodes);
 
@@ -81,15 +82,18 @@ export class Purger implements IPurger {
 
                     } case PurgeMethod.invalidate: {
 
-                        this.consoleLogger.log(`Performing <Invalidate> purge method on provided CP Codes`)
+                        this.consoleLogger.log("Performing CP Code method <Invalidate> cache purge");
 
                         purge = await this.akamaiHelper.invalidateCPCodeCache(parameters.network, parameters.cpCodes);
 
                         break;
 
                     }
+
                 }
+
             }
+
         }
 
         if (purge.httpStatus !== 201) {
@@ -98,7 +102,7 @@ export class Purger implements IPurger {
 
         }
 
-        this.consoleLogger.log(`Purge request <${purge.purgeId}>  has been accepted`);
+        this.consoleLogger.log(`Purge request <${purge.purgeId}> has been accepted`);
 
         if (parameters.wait) {
 
