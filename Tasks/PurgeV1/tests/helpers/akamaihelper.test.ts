@@ -12,7 +12,7 @@ import { AkamaiHelper } from "../../helpers/akamaihelper";
 import { IEdgeGridClient } from "../../interfaces/common/iedgegridclient";
 import { IPurgeResult } from "../../interfaces/helpers/ipurgeresult";
 
-describe("AkamaiHelper", ()  => {
+describe("AkamaiHelper", () => {
 
     const debugLoggerMock = TypeMoq.Mock.ofType<IDebugLogger>();
     const debugCreatorMock = TypeMoq.Mock.ofType<IDebugCreator>();
@@ -30,15 +30,15 @@ describe("AkamaiHelper", ()  => {
         const purgeResultMock: IPurgeResult = {
 
             httpStatus: 201,
-            detail: ``,
-            supportId: ``,
-            purgeId: ``,
+            detail: "",
+            supportId: "",
+            purgeId: "",
             estimatedSeconds: 1,
 
         };
 
-        const networkMock: string = `My-Network`;
-        const urlsMock: string[] = [ `/One`, `/Two` ];
+        const networkMock = "My-Network";
+        const urlsMock = [ "/One", "/Two" ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -66,15 +66,15 @@ describe("AkamaiHelper", ()  => {
         const purgeResultMock: IPurgeResult = {
 
             httpStatus: 201,
-            detail: ``,
-            supportId: ``,
-            purgeId: ``,
+            detail: "",
+            supportId: "",
+            purgeId: "",
             estimatedSeconds: 1,
 
         };
 
-        const networkMock: string = `My-Network`;
-        const urlsMock: string[] = [ "https://one.com", "http://two.com" ];
+        const networkMock = "My-Network";
+        const urlsMock = [ "https://one.com", "http://two.com" ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -102,15 +102,15 @@ describe("AkamaiHelper", ()  => {
         const purgeResultMock: IPurgeResult = {
 
             httpStatus: 201,
-            detail: ``,
-            supportId: ``,
-            purgeId: ``,
+            detail: "",
+            supportId: "",
+            purgeId: "",
             estimatedSeconds: 1,
 
         };
 
-        const networkMock: string = `My-Network`;
-        const cpCodesMock: number[] = [ 123456, 789123 ];
+        const networkMock = "My-Network";
+        const cpCodesMock = [ 123456, 789123 ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));
@@ -138,15 +138,15 @@ describe("AkamaiHelper", ()  => {
         const purgeResultMock: IPurgeResult = {
 
             httpStatus: 201,
-            detail: ``,
-            supportId: ``,
-            purgeId: ``,
+            detail: "",
+            supportId: "",
+            purgeId: "",
             estimatedSeconds: 1,
 
         };
 
-        const networkMock: string = `My-Network`;
-        const cpCodesMock: number[] = [ 123456, 789123 ];
+        const networkMock = "My-Network";
+        const cpCodesMock = [ 123456, 789123 ];
 
         edgegridClientMock.setup((x) => x.post(TypeMoq.It.isAnyString(), TypeMoq.It.isAny())).returns(
             () => Promise.resolve(purgeResultMock));

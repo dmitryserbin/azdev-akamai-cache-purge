@@ -29,7 +29,7 @@ export class ApiFactory implements IApiFactory {
 
         const debug = this.debugLogger.extend(this.createEdgegridClient.name);
 
-        debug(`Creating EdgeGrid API client`);
+        debug("Creating EdgeGrid API client");
 
         const edgegridClient: IEdgeGridClient = new EdgeGridClient(this.edgeGrid, this.debugLogger);
 
