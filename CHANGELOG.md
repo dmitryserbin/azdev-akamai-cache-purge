@@ -4,7 +4,7 @@
 
 `2022-05-24`
 
-- Add CP Codes purge by support
+- Add CP Code purge by support
 - Add delete purge method support
 
 ## 1.0.*
