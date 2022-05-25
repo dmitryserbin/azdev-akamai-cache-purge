@@ -51,7 +51,7 @@
       "label": "Purge method",
       "helpMarkDown": "Method to perform content purging by\n\n- `Delete` - selecting this method means the content that is currently in Akamai’s edge server caches is never served.\n- `Invalidate` - Select this method to mark the cached content as invalid",
       "required": true,
-      "defaultValue": "Invalidate",
+      "defaultValue": "invalidate",
       "options": {
         "delete": "Delete",
         "invalidate": "Invalidate"
