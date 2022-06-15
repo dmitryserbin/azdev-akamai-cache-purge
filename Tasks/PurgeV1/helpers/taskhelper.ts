@@ -124,7 +124,7 @@ export class TaskHelper implements ITaskHelper {
 
         };
 
-        switch (purgeType) {
+        switch (purgeType.toLowerCase()) {
 
             case "url": {
 
@@ -132,17 +132,21 @@ export class TaskHelper implements ITaskHelper {
 
                 break;
 
-            } case "cpCode": {
+            } case "cpcode": {
 
                 parameters = await this.readCPCodeInputs(parameters);
 
                 break;
 
+            } default : {
+
+                throw new Error("Invalid purge type");
+
             }
 
         }
 
-        switch (purgeMethod) {
+        switch (purgeMethod.toLowerCase()) {
 
             case "delete": {
 
@@ -155,6 +159,10 @@ export class TaskHelper implements ITaskHelper {
                 parameters.purgeMethod = PurgeMethod.invalidate;
 
                 break;
+
+            } default : {
+
+                throw new Error("Invalid purge method");
 
             }
 

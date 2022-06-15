@@ -53,7 +53,7 @@ URL's CP code.
   inputs:
     edgegridEndpoint: My-Endpoint # Required
     network: My-Network           # Options: staging, production
-    purgeType: url                # Optional. Options: url (default), cpcode
+    purgeType: url                # Optional. Options: url (default), cpCode
     # purgeMethod: Invalidate     # Optional. Options: invalidate (default), delete
     urls: |                       # Required when purgeType: url
       https://my.domain/one
@@ -69,9 +69,9 @@ URL's CP code.
   inputs:
     edgegridEndpoint: My-Endpoint # Required
     network: My-Network           # Options: staging, production
-    purgeType: cpcode             # Optional. Options: url (default), cpcode
+    purgeType: cpCode             # Optional. Options: url (default), cpCode
     # purgeMethod: Invalidate     # Optional. Options: invalidate (default), delete
-    cpCodes: |                    # Required when purgeType: cpcode
+    cpCodes: |                    # Required when purgeType: cpCode
       123456
       789123
     wait: false                   # Options: true, false
